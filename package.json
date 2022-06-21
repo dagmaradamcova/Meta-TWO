@@ -1,0 +1,23 @@
+{
+  "name": "meta-two",
+  "version": "1.0.0",
+  "description": "Meta-TWO Web App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dagmaradamcova/Meta-TWO.git"
+  },
+  "author": "Dagmar Adamcova, CogWorks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dagmaradamcova/Meta-TWO/issues"
+  },
+  "homepage": "https://github.com/dagmaradamcova/Meta-TWO#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
