@@ -27,7 +27,7 @@ app.post("/", (request, response) => {
   // Save as JSON
   if (config.logJSON == true) {
     let data = JSON.stringify(request.body, null, 2);
-    let filename = request.body.subjectID;
+    let filename = request.body.unixTimestamp;
     let filepath = makePath(config.dataDir, filename, "json");
 
     console.log(filename);
@@ -41,14 +41,14 @@ app.post("/", (request, response) => {
 
   // Save as CSV
   if (config.logCSV == true) {
-    let filename = request.body.subjectID;
+    let filename = request.body.unixTimestamp;
     let filepath = makePath(config.dataDir, filename, "csv");
 
     let data;
     if (fs.existsSync(filepath)) {
       data = json2csv(request.body, (header = false));
     } else {
-      data = json2csv(request.body, (header = true));
+      data = json2csv(request.body, (header = true)); // save with header if new file
     }
 
     console.log(filepath);
@@ -84,6 +84,7 @@ function json2csv(obj, header = false) {
   }
   csv = csv.substring(0, csv.length - 1);
   csv += "\n";
+  console.log(csv);
   return csv;
 }
 

@@ -37,6 +37,7 @@ let MetaTWO = {
     downButton: -1,
     startButton: -1,
     session: Date().toString(),
+    unixTimestamp: Date.now(), // time session started
     gameType: "standard",
     sessionTime: 3600, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
     seed: -1, // seed for the Mersenne Twister (random number generator). -1 means use the current time

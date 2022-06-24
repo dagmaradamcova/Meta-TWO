@@ -1040,7 +1040,7 @@ MetaTWO.Game.prototype = {
       logit(MetaTWO.config.session, "session"); // Date().toString()
       logit(MetaTWO.config.gameType, "game_type"); // "standard"
       logit(MetaTWO.gameNumber, "game_number");
-      logit(this.episode, "episode_number"); // starts from 0?
+      logit(this.episode, "episode_number"); // starts from 0
       logit(this.level, "level");
       logit(this.score, "score");
       logit(this.lines, "lines_cleared");
@@ -1091,16 +1091,56 @@ MetaTWO.Game.prototype = {
 
       /* DATA LOG */
       let datalog = {
+        unixTimestamp: MetaTWO.config.unixTimestamp,
         subjectID: MetaTWO.config.subjectNumber,
+        ECID: MetaTWO.config.ECID,
+        session: MetaTWO.config.session, // Date().toString()
+        gameType: MetaTWO.config.gameType, // "standard"
+        gameNumber: MetaTWO.gameNumber,
+
         gameTime: MetaTWO.game.time.totalElapsedSeconds(),
+        episode: this.episode,
+        level: this.level,
+        score: this.score,
+        linesCleared: this.lines,
+
+        completed: complete,
+        gameDuration:
+          MetaTWO.game.time.totalElapsedSeconds() - this.gameStartTime,
+        avgEpDuration:
+          (MetaTWO.game.time.totalElapsedSeconds() - this.gameStartTime) /
+          (this.episode + 1),
+
         eventType: event_type,
-        session: MetaTWO.config.session,
-        zoid_sequence: JSON.stringify(this.zoidBuff),
-        zoid_rep: JSON.stringify(this.zoid.zoidRep()), // current zoid location on board
+        zoid_sequence: this.zoidBuff.join(""),
+
+        eventID: NaN,
+        eventData1: NaN,
+        eventData2: NaN,
+
+        currZoid: this.zoid.names[this.curr],
+        nextZoid: this.nextZoid.names[this.next],
+
+        are: this.are.toString(),
+        das: this.das.toString(),
+        softdrop: this.softdrop_timer.toString(),
+
+        boardRep: JSON.stringify(this.board.contents.slice(3, 23).join("_")),
+        zoidRep: JSON.stringify(this.zoid.zoidRep().join("_")), // current zoid location on board
       };
 
-      console.log(datalog);
-      console.log(typeof datalog);
+      if (evt_id) {
+        datalog.eventID = evt_id;
+      }
+      if (evt_data1) {
+        datalog.eventData1 = evt_data1;
+      }
+      if (evt_data2) {
+        datalog.eventData2 = evt_data2;
+      }
+
+      //console.log(datalog.zoid_sequence);
+      //console.log(typeof datalog.zoid_rep);
       console.log("NEXT UPPPPPP");
 
       /* Define post data function */
