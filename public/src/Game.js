@@ -1090,9 +1090,10 @@ MetaTWO.Game.prototype = {
       this.masterLog += data + "\n";
 
       /* DATA LOG */
+      // if saving to DB, this must match schema in log.js
       let datalog = {
-        unixTimestamp: MetaTWO.config.unixTimestamp,
         subjectID: MetaTWO.config.subjectNumber,
+        unixTimestamp: MetaTWO.config.unixTimestamp,
         ECID: MetaTWO.config.ECID,
         session: MetaTWO.config.session, // Date().toString()
         gameType: MetaTWO.config.gameType, // "standard"
@@ -1112,7 +1113,6 @@ MetaTWO.Game.prototype = {
           (this.episode + 1),
 
         eventType: event_type,
-        zoid_sequence: this.zoidBuff.join(""),
 
         eventID: NaN,
         eventData1: NaN,
@@ -1121,12 +1121,18 @@ MetaTWO.Game.prototype = {
         currZoid: this.zoid.names[this.curr],
         nextZoid: this.nextZoid.names[this.next],
 
-        are: this.are.toString(),
-        das: this.das.toString(),
-        softdrop: this.softdrop_timer.toString(),
+        are: this.are,
+        das: this.das,
+        softdrop: this.softdrop_timer,
+        // are: this.are.toString(),
+        // das: this.das.toString(),
+        // softdrop: this.softdrop_timer.toString(),
 
+        zoid_sequence: this.zoidBuff.join(""),
         boardRep: JSON.stringify(this.board.contents.slice(3, 23).join("_")),
         zoidRep: JSON.stringify(this.zoid.zoidRep().join("_")), // current zoid location on board
+        // boardRep: JSON.stringify(this.board.contents.slice(3, 23)),
+        // zoidRep: JSON.stringify(this.zoid.zoidRep()), // current zoid location on board
       };
 
       if (evt_id) {
@@ -1139,11 +1145,14 @@ MetaTWO.Game.prototype = {
         datalog.eventData2 = evt_data2;
       }
 
-      //console.log(datalog.zoid_sequence);
-      //console.log(typeof datalog.zoid_rep);
-      console.log("NEXT UPPPPPP");
+      console.log("NEXT");
+      // console.log(typeof this.are);
+      // console.log(typeof this.das);
+      // console.log(typeof this.softdrop_timer);
+      console.log(datalog);
+      // console.log(JSON.stringify(datalog));
 
-      /* Define post data function */
+      /* Post data function */
       async function postData(data) {
         const options = {
           method: "POST",
@@ -1153,8 +1162,8 @@ MetaTWO.Game.prototype = {
 
         try {
           const response = await fetch("/", options);
-          const message = await response.json();
-          console.log(message);
+          // const message = await response.json();
+          // console.log(message);
         } catch (error) {
           console.error(error);
         }
