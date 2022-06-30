@@ -1,53 +1,53 @@
 /** @constructor */
 let spacebar, input, enter;
 
-MetaTWO.MainMenu = function() {};
+MetaTWO.MainMenu = function () {};
 
 MetaTWO.MainMenu.stateKey = "MainMenu";
 
-MetaTWO.MainMenu.prototype.init = function() {};
+MetaTWO.MainMenu.prototype.init = function () {};
 
-MetaTWO.MainMenu.prototype.preload = function() {};
+MetaTWO.MainMenu.prototype.preload = function () {};
 
-MetaTWO.MainMenu.prototype.create = function() {
-  this.stage.backgroundColor = 0x444444;
+MetaTWO.MainMenu.prototype.create = function () {
+  this.stage.backgroundColor = 0x050505; // 0x444444;
   MetaTWO.game.add.text(240, 50, "META-TWO Beta test", {
     font: "bold 32px Arial",
     fill: "#fff",
     boundsAlignH: "center",
-    boundsAlignV: "middle"
+    boundsAlignV: "middle",
   });
   MetaTWO.game.add.text(310, 150, "Subject Number", {
     font: "bold 24px Arial",
     fill: "#fff",
     boundsAlignH: "center",
-    boundsAlignV: "middle"
+    boundsAlignV: "middle",
   });
   MetaTWO.game.add.text(235, 300, "Desired start level (default is 0)", {
     font: "bold 24px Arial",
     fill: "#fff",
     boundsAlignH: "center",
-    boundsAlignV: "middle"
+    boundsAlignV: "middle",
   });
   MetaTWO.game.add.text(210, 350, "Press Enter key or A button to begin", {
     font: "bold 24px Arial",
     fill: "#fff",
     boundsAlignH: "center",
-    boundsAlignV: "middle"
+    boundsAlignV: "middle",
   });
   //text.setTextBounds(0, 100, 800, 100);
   //spacebar =  MetaTWO.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   enter = MetaTWO.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-  subjectNumber = MetaTWO.game.add.inputField(375,200, {
-    font: '18px Arial',
-    fill: '#212121',
-    fontWeight: 'bold',
+  subjectNumber = MetaTWO.game.add.inputField(375, 200, {
+    font: "18px Arial",
+    fill: "#212121",
+    fontWeight: "bold",
     width: 50,
     padding: 8,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: "#000",
     borderRadius: 6,
-    placeHolder: '1234',
+    placeHolder: "1234",
     min: 0,
     max: 9999,
     type: PhaserInput.InputType.number,
@@ -55,14 +55,14 @@ MetaTWO.MainMenu.prototype.create = function() {
   });
   subjectNumber.setText(1234);
 
-  input = MetaTWO.game.add.inputField(375,400, {
-    font: '18px Arial',
-    fill: '#212121',
-    fontWeight: 'bold',
+  input = MetaTWO.game.add.inputField(375, 400, {
+    font: "18px Arial",
+    fill: "#212121",
+    fontWeight: "bold",
     width: 50,
     padding: 8,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: "#000",
     borderRadius: 6,
     placeHolder: MetaTWO.config.startLevel,
     min: 0,
@@ -77,12 +77,12 @@ MetaTWO.MainMenu.prototype.create = function() {
   //console.log(input);
 }; // end create function
 
-MetaTWO.MainMenu.prototype.update = function() {
+MetaTWO.MainMenu.prototype.update = function () {
   if (enter.isDown) {
     this.gotoNextScreen();
   }
-  
-  if (MetaTWO.gamepad.isDown(Phaser.Gamepad.BUTTON_0)){
+
+  if (MetaTWO.gamepad.isDown(Phaser.Gamepad.BUTTON_0)) {
     // assuming a Tomee converted gamepad
     MetaTWO.config.AButton = Phaser.Gamepad.BUTTON_0;
     MetaTWO.config.BButton = Phaser.Gamepad.BUTTON_1;
@@ -90,12 +90,11 @@ MetaTWO.MainMenu.prototype.update = function() {
     MetaTWO.config.rightButton = Phaser.Gamepad.BUTTON_6;
     MetaTWO.config.downButton = Phaser.Gamepad.BUTTON_4;
     MetaTWO.config.startButton = Phaser.Gamepad.BUTTON_3;
-    MetaTWO.config.pad = "axis"
-    
+    MetaTWO.config.pad = "axis";
 
     this.gotoNextScreen();
   }
-  if (MetaTWO.gamepad.isDown(Phaser.Gamepad.BUTTON_1)){
+  if (MetaTWO.gamepad.isDown(Phaser.Gamepad.BUTTON_1)) {
     // assuming NES-Retro gamepad
     MetaTWO.config.AButton = Phaser.Gamepad.BUTTON_1;
     MetaTWO.config.BButton = Phaser.Gamepad.BUTTON_0;
@@ -107,14 +106,14 @@ MetaTWO.MainMenu.prototype.update = function() {
   }
 };
 
-MetaTWO.MainMenu.prototype.gotoNextScreen = function(){
+MetaTWO.MainMenu.prototype.gotoNextScreen = function () {
   input.endFocus();
-  input.value = input.value===""?0:input.value;
-  if(typeof MetaTWO.config.startLevel !== "number"){
+  input.value = input.value === "" ? 0 : input.value;
+  if (typeof MetaTWO.config.startLevel !== "number") {
     MetaTWO.config.fixedLevel = true;
   }
-  if(MetaTWO.config.fixedLevel == false){
-  MetaTWO.config.startLevel = input.value;
+  if (MetaTWO.config.fixedLevel == false) {
+    MetaTWO.config.startLevel = input.value;
   }
   MetaTWO.config.subjectNumber = subjectNumber.value;
   this.state.start(MetaTWO.Game.stateKey);
