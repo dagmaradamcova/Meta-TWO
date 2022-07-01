@@ -5,13 +5,14 @@ const express = require("express");
 const app = express();
 
 const config = {
-  logDB: false, // toggle logging to database
+  logDB: true, // toggle logging to database
   logLocal: false, // to enable local logging set logDB: false, and logLocal: true
 
   logJSON: true, // toggle json logging (logLocal must be set to true)
   logCSV: true, // toggle csv logging (logLocal must be set to true)
   dataDir: "data", // set local data directory
-  hostname: "127.0.0.1",
+  // hostname: "127.0.0.1",
+  hostname: "0.0.0.0",
   port: 3000,
 };
 

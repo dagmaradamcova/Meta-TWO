@@ -1145,18 +1145,18 @@ MetaTWO.Game.prototype = {
         datalog.eventData2 = evt_data2;
       }
 
-      console.log("NEXT");
-      // console.log(typeof this.are);
-      // console.log(typeof this.das);
-      // console.log(typeof this.softdrop_timer);
-      console.log(datalog);
-      // console.log(JSON.stringify(datalog));
+      // console.log("NEXT");
+      // console.log(datalog);
 
       /* Post data function */
       async function postData(data) {
         const options = {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          mode: "cors",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(data),
         };
 
@@ -1278,9 +1278,9 @@ MetaTWO.Game.prototype = {
 
       let data = new FormData();
       data.append("data", this.masterLog);
-      let xhr = new XMLHttpRequest();
-      xhr.open("post", "/data/datastorage.php", true);
-      xhr.send(data);
+      // let xhr = new XMLHttpRequest();
+      // xhr.open("post", "/data/datastorage.php", true);
+      // xhr.send(data);
     }
 
     //This code was used to ensure that the data streaming issue was caused by data size not by connection termination.
