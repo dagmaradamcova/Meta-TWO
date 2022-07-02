@@ -37,9 +37,9 @@ let MetaTWO = {
     downButton: -1,
     startButton: -1,
     session: Date().toString(),
-    unixTimestamp: Date.now(), // time session started
+    unixTimestamp: Date.now(), // time session started, this is also used to seed the MT
     gameType: "standard",
-    sessionTime: 3600, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
+    sessionTime: 60, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
     seed: -1, // seed for the Mersenne Twister (random number generator). -1 means use the current time
     fixedLevel: false, // disregard MainMenu input
     pad: "standard",
@@ -104,6 +104,8 @@ let MetaTWO = {
   gameNumber: 1,
 };
 
+console.log(MetaTWO.config.session);
+
 MetaTWO.run = function () {
   // Create the Phaser game
   this.game = new Phaser.Game(
@@ -126,7 +128,8 @@ MetaTWO.run = function () {
   this.mt = new MersenneTwister();
   // to get "identical" results to Python 2.7.x, we seed with seedArray(), not seed()
   if (MetaTWO.config.seed === -1) {
-    this.mt.seedArray([Date.now()]);
+    // this.mt.seedArray([Date.now()]);
+    this.mt.seedArray([MetaTWO.config.unixTimestamp]);
   } else {
     this.mt.seedArray([MetaTWO.config.seed]);
   }

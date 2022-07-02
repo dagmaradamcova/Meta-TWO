@@ -1093,7 +1093,7 @@ MetaTWO.Game.prototype = {
       // if saving to DB, this must match schema in log.js
       let datalog = {
         subjectID: MetaTWO.config.subjectNumber,
-        unixTimestamp: MetaTWO.config.unixTimestamp,
+        unixTimestamp: MetaTWO.config.unixTimestamp, // time session started, this is also used to seed the MT
         ECID: MetaTWO.config.ECID,
         session: MetaTWO.config.session, // Date().toString()
         gameType: MetaTWO.config.gameType, // "standard"
@@ -1145,8 +1145,10 @@ MetaTWO.Game.prototype = {
         datalog.eventData2 = evt_data2;
       }
 
-      // console.log("NEXT");
-      // console.log(datalog);
+      console.log("NEXT");
+      console.log(Date().toString());
+      // console.log("stringify");
+      // console.log(JSON.stringify(datalog.seed));
 
       /* Post data function */
       async function postData(data) {
