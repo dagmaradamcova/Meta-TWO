@@ -111,7 +111,7 @@ if (rNum < 0.5) {
 } else {
   MetaTWO.config.ECID = 1;
 }
-// console.log(MetaTWO.config.ECID);
+console.log(MetaTWO.config.ECID);
 
 MetaTWO.run = function () {
   // Create the Phaser game

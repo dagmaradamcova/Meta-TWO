@@ -32,5 +32,16 @@ MetaTWO.GameOver.prototype.update = function () {
 
 MetaTWO.GameOver.prototype.gotoNextScreen = function () {
   MetaTWO.gameNumber++;
+
+  /* Set startLevel for next game */
+  if (MetaTWO.config.ECID == 0) {
+    MetaTWO.config.startLevel = 0;
+  } else if (MetaTWO.config.ECID == 1) {
+    MetaTWO.config.startLevel = MetaTWO.gameNumber + 2;
+  }
+
+  console.log(MetaTWO.gameNumber);
+  console.log(MetaTWO.config.startLevel);
+
   this.state.start(MetaTWO.Game.stateKey);
 };
