@@ -11,34 +11,50 @@ MetaTWO.MainMenu.prototype.preload = function () {};
 
 MetaTWO.MainMenu.prototype.create = function () {
   this.stage.backgroundColor = 0x050505; // 0x444444;
-  MetaTWO.game.add.text(240, 50, "META-TWO Beta test", {
+  // 240, 50
+  titleText = MetaTWO.game.add.text(0, 0, "META-TWO", {
     font: "bold 32px Arial",
     fill: "#fff",
     boundsAlignH: "center",
     boundsAlignV: "middle",
   });
-  MetaTWO.game.add.text(310, 150, "Subject Number", {
+  titleText.setTextBounds(0, 50, MetaTWO.SCREEN_WIDTH, 100);
+  // 310, 150
+  subjectText = MetaTWO.game.add.text(0, 0, "Participant ID", {
     font: "bold 24px Arial",
     fill: "#fff",
     boundsAlignH: "center",
     boundsAlignV: "middle",
   });
-  MetaTWO.game.add.text(235, 300, "Desired start level (default is 0)", {
+  subjectText.setTextBounds(0, 140, MetaTWO.SCREEN_WIDTH, 100);
+  // 235, 300
+  levelText = MetaTWO.game.add.text(
+    0,
+    0,
+    "Desired start level (default is 0)",
+    {
+      font: "bold 24px Arial",
+      fill: "#fff",
+      boundsAlignH: "center",
+      boundsAlignV: "middle",
+    }
+  );
+  levelText.setTextBounds(0, 280, MetaTWO.SCREEN_WIDTH, 100);
+  // 210, 350
+  beginText = MetaTWO.game.add.text(0, 0, "Press ENTER to begin", {
+    // or A button
     font: "bold 24px Arial",
     fill: "#fff",
     boundsAlignH: "center",
     boundsAlignV: "middle",
   });
-  MetaTWO.game.add.text(210, 350, "Press Enter key or A button to begin", {
-    font: "bold 24px Arial",
-    fill: "#fff",
-    boundsAlignH: "center",
-    boundsAlignV: "middle",
-  });
-  //text.setTextBounds(0, 100, 800, 100);
+  beginText.setTextBounds(0, 440, MetaTWO.SCREEN_WIDTH, 100);
+  // text.setTextBounds(0, 100, 800, 100);
   //spacebar =  MetaTWO.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   enter = MetaTWO.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-  subjectNumber = MetaTWO.game.add.inputField(375, 200, {
+  // 375, 200
+  xCoord = MetaTWO.SCREEN_WIDTH / 2 - (25 + 8);
+  subjectNumber = MetaTWO.game.add.inputField(xCoord, 220, {
     font: "18px Arial",
     fill: "#212121",
     fontWeight: "bold",
@@ -55,7 +71,7 @@ MetaTWO.MainMenu.prototype.create = function () {
   });
   subjectNumber.setText(1234);
 
-  input = MetaTWO.game.add.inputField(375, 400, {
+  input = MetaTWO.game.add.inputField(xCoord, 360, {
     font: "18px Arial",
     fill: "#212121",
     fontWeight: "bold",

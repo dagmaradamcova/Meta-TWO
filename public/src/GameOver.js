@@ -8,17 +8,23 @@ MetaTWO.GameOver.prototype.preload = function () {};
 
 MetaTWO.GameOver.prototype.create = function () {
   this.stage.backgroundColor = 0x050505; // 0x444444;
-  MetaTWO.game.add.text(
-    240,
-    50,
-    "Game complete.\nPress Enter or A Button to continue",
+  // 240, 50
+  text = MetaTWO.game.add.text(
+    0,
+    0,
+    "Game over.\nPress ENTER to continue.", // or A Button
     {
       font: "bold 32px Arial",
       fill: "#fff",
       boundsAlignH: "center",
       boundsAlignV: "middle",
+      align: "center",
     }
   );
+
+  text.setTextBounds(0, 100, MetaTWO.SCREEN_WIDTH, 200);
+
+  /* Display game summary */
 
   this.enter = MetaTWO.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
   this.gamepad = MetaTWO.gamepad;
