@@ -244,6 +244,7 @@ MetaTWO.Game.prototype = {
       this.fastMusic
         ? MetaTWO.audio.music_fast.play()
         : MetaTWO.audio.music.play();
+      this.game.debug.reset(); // hide "paused" text
     }
     // While the game is running, these functions execute every frame
     if (this.alive && !this.paused) {
