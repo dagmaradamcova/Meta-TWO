@@ -104,7 +104,14 @@ let MetaTWO = {
   gameNumber: 1,
 };
 
-console.log(MetaTWO.config.session);
+/* Random Assignment */
+var rNum = Math.random();
+if (rNum < 0.5) {
+  MetaTWO.config.ECID = 0;
+} else {
+  MetaTWO.config.ECID = 1;
+}
+// console.log(MetaTWO.config.ECID);
 
 MetaTWO.run = function () {
   // Create the Phaser game
