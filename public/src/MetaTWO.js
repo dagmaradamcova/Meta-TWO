@@ -29,6 +29,7 @@ let MetaTWO = {
   config: {
     startLevel: 0, //if you set to a list, it will cycle through and then repeat the last startLevel
     subjectNumber: 0,
+    queryID: NaN,
     ECID: 1212,
     AButton: -1, // different USB NES pads assign different button values
     BButton: -1, // to all the buttons. We ask the player to press the A
@@ -109,6 +110,17 @@ let MetaTWO = {
   ].join("\t"),
   gameNumber: 1,
 };
+
+/* Detect Participant ID */
+
+queryString = window.location.search;
+urlParams = new URLSearchParams(queryString);
+if (urlParams != NaN) {
+  MetaTWO.config.queryID = urlParams.get("PROLIFIC_PID");
+}
+
+console.log(urlParams.get("PROLIFIC_PID"));
+console.log(MetaTWO.config.queryID);
 
 /* Random Assignment */
 var rNum = Math.random();

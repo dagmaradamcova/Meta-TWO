@@ -1095,6 +1095,7 @@ MetaTWO.Game.prototype = {
       let datalog = {
         subjectID: MetaTWO.config.subjectNumber,
         unixTimestamp: MetaTWO.config.unixTimestamp, // time session started, this is also used to seed the MT
+        userAgent: navigator.userAgent,
         ECID: MetaTWO.config.ECID,
         session: MetaTWO.config.session, // Date().toString()
         gameType: MetaTWO.config.gameType, // "standard"
@@ -1151,8 +1152,9 @@ MetaTWO.Game.prototype = {
       MetaTWO.scores.level = datalog.level;
 
       console.log("NEXT");
+      console.log(navigator.userAgent);
       // console.log("stringify");
-      // console.log(JSON.stringify(datalog.seed));
+      console.log(JSON.stringify(datalog.subjectID));
 
       /* Post data function */
       async function postData(data) {

@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 /* Define schema */
 const logSchema = new mongoose.Schema({
-  subjectID: Number,
+  subjectID: String,
   unixTimestamp: Number,
+  userAgent: String,
   ECID: Number,
   session: String,
   gameType: String,
