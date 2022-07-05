@@ -41,7 +41,7 @@ MetaTWO.MainMenu.prototype.create = function () {
   // );
   // levelText.setTextBounds(0, 280, MetaTWO.SCREEN_WIDTH, 100);
   keysString =
-    "Press A, S, D to move left, down, right.\nPress K or L to rotate.\n\nPlease don't refresh the screen during the experiment.";
+    "Press A, S, D to move left, down, right.\nPress K or L to rotate.\n\nPlease don't refresh the page during the experiment.";
   keysText = MetaTWO.game.add.text(0, 0, keysString, {
     font: "bold 24px Arial",
     fill: "#fff",
@@ -83,10 +83,10 @@ MetaTWO.MainMenu.prototype.create = function () {
   });
   if (MetaTWO.config.queryID != null) {
     subjectNumber.setText(`${MetaTWO.config.queryID}`);
+  } else {
+    subjectNumber.setText("");
   }
-  // else {
-  //   subjectNumber.setText("");
-  // }
+  subjectNumber.blockInput = false;
   subjectNumber.startFocus();
 
   /*
@@ -144,13 +144,14 @@ MetaTWO.MainMenu.prototype.update = function () {
 };
 
 MetaTWO.MainMenu.prototype.gotoNextScreen = function () {
-  input.endFocus();
-  input.value = input.value === "" ? 0 : input.value;
+  // input.endFocus();
+  subjectNumber.endFocus();
+  // input.value = input.value === "" ? 0 : input.value;
   if (typeof MetaTWO.config.startLevel !== "number") {
     MetaTWO.config.fixedLevel = true;
   }
   if (MetaTWO.config.fixedLevel == false) {
-    MetaTWO.config.startLevel = input.value;
+    // MetaTWO.config.startLevel = input.value;
   }
   MetaTWO.config.subjectNumber = subjectNumber.value;
   this.state.start(MetaTWO.Game.stateKey);

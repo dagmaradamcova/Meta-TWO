@@ -1152,9 +1152,9 @@ MetaTWO.Game.prototype = {
       MetaTWO.scores.level = datalog.level;
 
       console.log("NEXT");
-      console.log(navigator.userAgent);
+      console.log(datalog.subjectID);
       // console.log("stringify");
-      console.log(JSON.stringify(datalog.subjectID));
+      // console.log(JSON.stringify(datalog.subjectID));
 
       /* Post data function */
       async function postData(data) {
