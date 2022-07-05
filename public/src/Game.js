@@ -1129,7 +1129,7 @@ MetaTWO.Game.prototype = {
         // das: this.das.toString(),
         // softdrop: this.softdrop_timer.toString(),
 
-        zoid_sequence: this.zoidBuff.join(""),
+        zoidSequence: this.zoidBuff.join(""),
         boardRep: JSON.stringify(this.board.contents.slice(3, 23).join("_")),
         zoidRep: JSON.stringify(this.zoid.zoidRep().join("_")), // current zoid location on board
         // boardRep: JSON.stringify(this.board.contents.slice(3, 23)),
@@ -1146,8 +1146,11 @@ MetaTWO.Game.prototype = {
         datalog.eventData2 = evt_data2;
       }
 
+      MetaTWO.scores.score = datalog.score;
+      MetaTWO.scores.lines = datalog.linesCleared;
+      MetaTWO.scores.level = datalog.level;
+
       console.log("NEXT");
-      console.log(Date().toString());
       // console.log("stringify");
       // console.log(JSON.stringify(datalog.seed));
 

@@ -32,7 +32,7 @@ const logSchema = new mongoose.Schema({
   das: Number,
   softdrop: Number,
 
-  zoid_sequence: String,
+  zoidSequence: String,
   boardRep: String,
   zoidRep: String,
 });

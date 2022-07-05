@@ -39,13 +39,19 @@ let MetaTWO = {
     session: Date().toString(),
     unixTimestamp: Date.now(), // time session started, this is also used to seed the MT
     gameType: "standard",
-    sessionTime: 10, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
+    sessionTime: 60, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
     seed: -1, // seed for the Mersenne Twister (random number generator). -1 means use the current time
     fixedLevel: false, // disregard MainMenu input
     pad: "standard",
     pressSensitivity: 0.1,
     releaseSensitivity: 0.1,
     logging: true,
+  },
+
+  scores: {
+    score: 0,
+    lines: 0,
+    level: 0,
   },
 
   // The audio files are loaded in the Preloader state
