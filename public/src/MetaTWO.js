@@ -40,7 +40,7 @@ let MetaTWO = {
     session: Date().toString(),
     unixTimestamp: Date.now(), // time session started, this is also used to seed the MT
     gameType: "standard",
-    sessionTime: 60, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
+    sessionTime: 900, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
     seed: -1, // seed for the Mersenne Twister (random number generator). -1 means use the current time
     fixedLevel: false, // disregard MainMenu input
     pad: "standard",
@@ -127,7 +127,7 @@ var rNum = Math.random();
 if (rNum < 0.5) {
   MetaTWO.config.ECID = 0;
 } else {
-  MetaTWO.config.ECID = 1;
+  MetaTWO.config.ECID = 0; // 1 for experimental
 }
 console.log(MetaTWO.config.ECID);
 
