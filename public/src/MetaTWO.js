@@ -113,7 +113,7 @@ let MetaTWO = {
   gameNumber: 1,
 };
 
-/* Detect Participant ID */
+/* Detect Participant ID from URL */
 
 queryString = window.location.search;
 urlParams = new URLSearchParams(queryString);
@@ -122,16 +122,16 @@ if (urlParams != NaN) {
   MetaTWO.config.queryEXP_ID = urlParams.get("EXP_ID");
 }
 
-console.log(urlParams.get("EXP_ID"));
-console.log(MetaTWO.config.queryEXP_ID);
+// console.log(urlParams.get("EXP_ID"));
+// console.log(MetaTWO.config.queryEXP_ID);
 
 /* Random Assignment */
 var rNum = Math.random();
 if (rNum < 0.5) {
   MetaTWO.config.ECID = 0;
-  MetaTWO.config.startLevel = [1, 5];
+  MetaTWO.config.startLevel = [1, 5]; // set start levels
 } else {
-  MetaTWO.config.ECID = 1; // 1 for experimental
+  MetaTWO.config.ECID = 1; // 1 for experimental condition
   MetaTWO.config.startLevel = [5, 5];
 }
 console.log(MetaTWO.config.ECID);

@@ -57,7 +57,7 @@ MetaTWO.Game.prototype = {
     this.softdrop_timer = 0;
     this.drop = 0;
 
-    //this.start_level = 0;
+    this.start_level = 0;
     this.level = 0;
     this.lines = 0;
     this.score = 0;
@@ -191,13 +191,17 @@ MetaTWO.Game.prototype = {
     }
     if (typeof MetaTWO.config.startLevel === "number") {
       this.level = MetaTWO.config.startLevel; //this.start_level;
+      this.start_level = MetaTWO.config.startLevel;
       //         this.level = 0;
     } else {
       if (MetaTWO.config.startLevel.length >= MetaTWO.gameNumber) {
         this.level = MetaTWO.config.startLevel[MetaTWO.gameNumber - 1]; //this.start_level;
+        this.start_level = MetaTWO.config.startLevel[MetaTWO.gameNumber - 1];
       } else {
         this.level =
           MetaTWO.config.startLevel[MetaTWO.config.startLevel.length - 1]; //this.start_level;
+        this.start_level =
+          MetaTWO.config.startLevel[MetaTWO.config.startLevel.length - 1];
       }
     }
 
@@ -497,7 +501,7 @@ MetaTWO.Game.prototype = {
     if (Math.floor(this.lines / 10) > Math.floor(lines_before / 10)) {
       hex_trick = Math.floor(this.lines / 10);
       hex_trick = parseInt(hex_trick.toString(), 16);
-      if (hex_trick > this.level) {
+      if (hex_trick > this.level - this.start_level) {
         this.level++;
         this.zoidNext.addAll("frame", 3);
         this.pile.addAll("frame", 3);
@@ -1152,8 +1156,8 @@ MetaTWO.Game.prototype = {
       MetaTWO.scores.lines = datalog.linesCleared;
       MetaTWO.scores.level = datalog.level;
 
-      console.log("NEXT");
-      console.log(datalog.subjectID);
+      // console.log("NEXT");
+      // console.log(datalog.subjectID);
 
       // console.log("stringify");
       // console.log(JSON.stringify(datalog.subjectID));

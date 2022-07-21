@@ -93,6 +93,6 @@ MetaTWO.GameOver.prototype.gotoNextScreen = function () {
   //   MetaTWO.config.startLevel = MetaTWO.gameNumber + 2;
   // }
 
-  console.log(MetaTWO.gameNumber);
-  console.log(MetaTWO.config.startLevel);
+  // console.log(MetaTWO.gameNumber);
+  // console.log(MetaTWO.config.startLevel);
 };
