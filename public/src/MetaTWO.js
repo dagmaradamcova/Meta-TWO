@@ -27,9 +27,10 @@ let MetaTWO = {
 
   // The preliminary configuration. Many of these values will be overridden before play begins
   config: {
-    startLevel: 0, //if you set to a list, it will cycle through and then repeat the last startLevel
+    startLevel: [0, 0], //if you set to a list, it will cycle through and then repeat the last startLevel
     subjectNumber: 0,
     queryID: NaN,
+    queryEXP_ID: NaN,
     ECID: 1212,
     AButton: -1, // different USB NES pads assign different button values
     BButton: -1, // to all the buttons. We ask the player to press the A
@@ -40,7 +41,8 @@ let MetaTWO = {
     session: Date().toString(),
     unixTimestamp: Date.now(), // time session started, this is also used to seed the MT
     gameType: "standard",
-    sessionTime: 900, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
+    sessionTime: 3600, // total time, in seconds, for this experimental session. 1 hour = 3600 seconds
+    maxGames: 2, // total n of games players are allowed to play per session
     seed: -1, // seed for the Mersenne Twister (random number generator). -1 means use the current time
     fixedLevel: false, // disregard MainMenu input
     pad: "standard",
@@ -117,19 +119,23 @@ queryString = window.location.search;
 urlParams = new URLSearchParams(queryString);
 if (urlParams != NaN) {
   MetaTWO.config.queryID = urlParams.get("PROLIFIC_PID");
+  MetaTWO.config.queryEXP_ID = urlParams.get("EXP_ID");
 }
 
-console.log(urlParams.get("PROLIFIC_PID"));
-console.log(MetaTWO.config.queryID);
+console.log(urlParams.get("EXP_ID"));
+console.log(MetaTWO.config.queryEXP_ID);
 
 /* Random Assignment */
 var rNum = Math.random();
 if (rNum < 0.5) {
   MetaTWO.config.ECID = 0;
+  MetaTWO.config.startLevel = [1, 5];
 } else {
-  MetaTWO.config.ECID = 0; // 1 for experimental
+  MetaTWO.config.ECID = 1; // 1 for experimental
+  MetaTWO.config.startLevel = [5, 5];
 }
 console.log(MetaTWO.config.ECID);
+console.log(MetaTWO.config.startLevel);
 
 MetaTWO.run = function () {
   // Create the Phaser game

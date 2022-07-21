@@ -71,15 +71,28 @@ MetaTWO.GameOver.prototype.update = function () {
 MetaTWO.GameOver.prototype.gotoNextScreen = function () {
   MetaTWO.gameNumber++;
 
-  /* Set startLevel for next game */
-  if (MetaTWO.config.ECID == 0) {
-    MetaTWO.config.startLevel = 0;
-  } else if (MetaTWO.config.ECID == 1) {
-    MetaTWO.config.startLevel = MetaTWO.gameNumber + 2;
+  if (MetaTWO.gameNumber > MetaTWO.config.maxGames) {
+    // this.state.start(MetaTWO.TimesUp.stateKey);
+
+    // REDIRECT IF EXCEEDED MAX N GAMES
+    if (this.enter.isDown || this.gamepad.isDown(MetaTWO.config.AButton)) {
+      window.open(
+        // "https://app.prolific.co/submissions/complete?cc=54166CF6",
+        `https://sheffieldpsychology.eu.qualtrics.com/jfe/form/SV_9RjTZkz1XZA3HE2?ParticipantID=${MetaTWO.config.subjectNumber}`,
+        "_self"
+      );
+    }
+  } else {
+    this.state.start(MetaTWO.Game.stateKey);
   }
+
+  /* Set startLevel for next game */
+  // if (MetaTWO.config.ECID == 0) {
+  //   MetaTWO.config.startLevel = 0;
+  // } else if (MetaTWO.config.ECID == 1) {
+  //   MetaTWO.config.startLevel = MetaTWO.gameNumber + 2;
+  // }
 
   console.log(MetaTWO.gameNumber);
   console.log(MetaTWO.config.startLevel);
-
-  this.state.start(MetaTWO.Game.stateKey);
 };

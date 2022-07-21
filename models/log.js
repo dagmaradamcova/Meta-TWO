@@ -5,6 +5,7 @@ const logSchema = new mongoose.Schema({
   subjectID: String,
   unixTimestamp: Number,
   userAgent: String,
+  EXP_ID: String,
   ECID: Number,
   session: String,
   gameType: String,

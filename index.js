@@ -5,8 +5,8 @@ const express = require("express");
 const app = express();
 
 const config = {
-  logDB: true, // toggle logging to database
-  logLocal: false, // to enable local logging set logDB: false, and logLocal: true
+  logDB: false, // toggle logging to database
+  logLocal: true, // to enable local logging set logDB: false, and logLocal: true
 
   logJSON: true, // toggle json logging (logLocal must be set to true)
   logCSV: true, // toggle csv logging (logLocal must be set to true)

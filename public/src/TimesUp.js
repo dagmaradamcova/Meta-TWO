@@ -41,7 +41,7 @@ MetaTWO.TimesUp.prototype.create = function () {
 MetaTWO.TimesUp.prototype.update = function () {
   if (this.enter.isDown || this.gamepad.isDown(MetaTWO.config.AButton)) {
     window.open(
-      "https://app.prolific.co/submissions/complete?cc=54166CF6",
+      `https://sheffieldpsychology.eu.qualtrics.com/jfe/form/SV_9RjTZkz1XZA3HE2?ParticipantID=${MetaTWO.config.subjectNumber}`,
       "_self"
     );
   }

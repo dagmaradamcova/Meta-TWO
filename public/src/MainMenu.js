@@ -12,13 +12,13 @@ MetaTWO.MainMenu.prototype.preload = function () {};
 MetaTWO.MainMenu.prototype.create = function () {
   this.stage.backgroundColor = 0x050505; // 0x444444;
   // 240, 50
-  titleText = MetaTWO.game.add.text(0, 0, "META-TWO", {
-    font: "bold 32px Arial",
-    fill: "#fff",
-    boundsAlignH: "center",
-    boundsAlignV: "middle",
-  });
-  titleText.setTextBounds(0, 50, MetaTWO.SCREEN_WIDTH, 100);
+  // titleText = MetaTWO.game.add.text(0, 0, "META-TWO", {
+  //   font: "bold 32px Arial",
+  //   fill: "#fff",
+  //   boundsAlignH: "center",
+  //   boundsAlignV: "middle",
+  // });
+  // titleText.setTextBounds(0, 50, MetaTWO.SCREEN_WIDTH, 100);
   // 310, 150
   subjectText = MetaTWO.game.add.text(0, 0, "Participant ID", {
     font: "bold 24px Arial",

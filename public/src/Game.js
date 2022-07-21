@@ -1095,8 +1095,9 @@ MetaTWO.Game.prototype = {
       let datalog = {
         subjectID: MetaTWO.config.subjectNumber,
         unixTimestamp: MetaTWO.config.unixTimestamp, // time session started, this is also used to seed the MT
-        userAgent: navigator.userAgent,
-        ECID: MetaTWO.config.ECID,
+        userAgent: JSON.stringify(navigator.userAgent),
+        EXP_ID: MetaTWO.config.queryEXP_ID, // experiment ID
+        ECID: MetaTWO.config.ECID, // experimental condition ID
         session: MetaTWO.config.session, // Date().toString()
         gameType: MetaTWO.config.gameType, // "standard"
         gameNumber: MetaTWO.gameNumber,
@@ -1153,6 +1154,7 @@ MetaTWO.Game.prototype = {
 
       console.log("NEXT");
       console.log(datalog.subjectID);
+
       // console.log("stringify");
       // console.log(JSON.stringify(datalog.subjectID));
 

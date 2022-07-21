@@ -1,5 +1,9 @@
 data/
 # node_modules/
+index.html
+indexNEW.html
+indexOLD.html
+game_img.png
 notes.md
 .env
 .DS_Store
